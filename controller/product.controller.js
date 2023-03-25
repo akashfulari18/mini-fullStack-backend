@@ -38,6 +38,20 @@ const getproducts = async(req,res)=>{
         res.status(400).send({err:err.message})
     }
 }
+const getsingleproduct = async(req,res)=>{
+    const {id} = req.params
+    try {
+        const product = await ProductModel.findOne({_id:id})
+        if(product){
+            res.status(200).send({data:product})
+        }else{
+            res.status(400).send({err:"data is unavailable!"})
+        }
+    } catch (err) {
+        
+        res.status(400).send({err:err.message})
+    }
+}
 
 const deleteproduct = async(req,res)=>{
     
@@ -62,4 +76,4 @@ const updateproduct =async(req,res)=>{
          
      }
  }
-module.exports={addproduct,getproducts,deleteproduct,updateproduct}
+module.exports={addproduct,getproducts,deleteproduct,updateproduct,getsingleproduct}

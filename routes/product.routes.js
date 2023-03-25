@@ -1,5 +1,5 @@
 const express = require('express')
-const { addproduct, getproducts, deleteproduct ,updateproduct} = require('../controller/product.controller')
+const { addproduct, getproducts, deleteproduct ,updateproduct, getsingleproduct} = require('../controller/product.controller')
 const authorizer = require('../middleware/Authorizer')
 const jwt = require('jsonwebtoken')
 const ProductModel = require('../model/product.model')
@@ -28,6 +28,7 @@ productRoute.post("/add",authorizer,async(req,res)=>{
 })
 
 productRoute.get("/",getproducts)
+productRoute.get("/:id",getsingleproduct)
 productRoute.delete("/:id",authorizer,deleteproduct)
 productRoute.patch("/:id",authorizer,updateproduct)
 
